@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+      - main
 
 #環境変数を設定します。
 env:
