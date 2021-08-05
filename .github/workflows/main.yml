@@ -31,7 +31,7 @@ jobs:
 #       run: ./ossutil64 config -i ${ACCESS_KEY_ID} -k ${ACCESS_KEY_SECRET} -e ${OSS_ENDPOINT} -c .ossutilconfig
     - name: install and build
       run: |
-        ls
+        cd vue_api_test
         npm install
         ls
         npm run build --if-present
