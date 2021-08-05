@@ -29,5 +29,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - name: Upload the web folder to the chosen OSS bucket
-    - run: ls -la
     - run: ./ossutil64 --config-file .ossutilconfig cp ${{ github.workspace }}/dist oss://${OSS_BUCKET_NAME} -r -f
