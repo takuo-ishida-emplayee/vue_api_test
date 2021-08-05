@@ -8,7 +8,7 @@ on:
 #環境変数を設定します。
 env:
   OSS_BUCKET_NAME: ${{secrets.OSS_BUCKET_NAME}}
-  OSS_ENDPOINT: ${{secrets.ENDPOINT}}
+  OSS_ENDPOINT: ${{secrets.OSS_ENDPOINT}}
   ACCESS_KEY_ID: ${{secrets.ACCESS_KEY_ID}}
   ACCESS_KEY_SECRET: ${{secrets.ACCESS_KEY_SECRET}}
   VUE_APP_API: ${{secrets.VUE_APP_API}}
