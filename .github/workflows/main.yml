@@ -25,10 +25,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
-    - name: Install Alibaba Cloud OSSUTIL
-      run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
-    - name: Configure Alibaba Cloud OSSUTIL
-      run: ./ossutil64 config -i ${ACCESS_KEY_ID} -k ${ACCESS_KEY_SECRET} -e ${OSS_ENDPOINT} -c .ossutilconfig
+#     - name: Install Alibaba Cloud OSSUTIL
+#       run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
+#     - name: Configure Alibaba Cloud OSSUTIL
+#       run: ./ossutil64 config -i ${ACCESS_KEY_ID} -k ${ACCESS_KEY_SECRET} -e ${OSS_ENDPOINT} -c .ossutilconfig
     - name: install and build
       run: |
         ls
