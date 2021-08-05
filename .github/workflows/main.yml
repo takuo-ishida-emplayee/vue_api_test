@@ -10,7 +10,7 @@ env:
   OSS_ENDPOINT: ${{secrets.ENDPOINT}}
   ACCESS_KEY_ID: ${{secrets.ACCESS_KEY_ID}}
   ACCESS_KEY_SECRET: ${{secrets.ACCESS_KEY_SECRET}}
-  API: ${{secrets.API}}
+  VUE_APP_API: ${{secrets.VUE_APP_API}}
   #デフォルトでLTS(Long Term Suppurt)になります
   NODE_VERSION: '14'
 #実行するJobを記載します。
