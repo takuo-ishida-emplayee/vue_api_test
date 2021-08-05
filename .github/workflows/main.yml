@@ -1,0 +1,35 @@
+# # 実効トリガー条件を記載します。（↓対象ブランチがpushされた時）
+on:
+  push:
+    branches:
+      - main
+
+#環境変数を設定します。
+env:
+  OSS_BUCKET_NAME: ${{secrets.OSS_BUCKET_NAME}}
+  OSS_ENDPOINT: ${{secrets.ENDPOINT}}
+  ACCESS_KEY_ID: ${{secrets.ACCESS_KEY_ID}}
+  ACCESS_KEY_SECRET: ${{secrets.ACCESS_KEY_SECRET}}
+  API: ${{secrets.API}}
+  #デフォルトでLTS(Long Term Suppurt)になります
+  NODE_VERSION: '14'
+#実行するJobを記載します。
+jobs:
+  deploy-to-oss-dev-bucket:
+    #実行するOS
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    - name: Install Alibaba Cloud OSSUTIL
+      run: wget http://gosspublic.alicdn.com/ossutil/1.6.10/ossutil64 && chmod +x ossutil64
+    - name: Configure Alibaba Cloud OSSUTIL
+      run: ./ossutil64 config -i ${ACCESS_KEY_ID} -k ${ACCESS_KEY_SECRET} -e ${OSS_ENDPOINT} -c .ossutilconfig
+    - name: Upload the web folder to the chosen OSS bucket
+      run: |
+        npm install
+        npm run build
+        ./ossutil64 --config-file .ossutilconfig cp ${{ github.workspace }}/dist oss://${OSS_BUCKET_NAME} -r -f
